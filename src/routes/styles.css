@@ -1,0 +1,24 @@
+body {
+	min-height: 100vh;
+	box-sizing: border-box;
+}
+
+.divider {
+	margin: 0.5rem 0;
+	background: rgb(244, 244, 244);
+	height: 1px;
+	width: 100%;
+}
+
+.dataRow {
+	font-weight: 100;
+	font-size: 1.5rem;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.dataRow b {
+	font-weight: 300;
+	white-space: nowrap;
+}
