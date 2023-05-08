@@ -3,6 +3,7 @@
 > ### To deploy:
 >
 > 1. Create new `.env` file basing on `.env.example`
+> 2. Run `npm i && npm run build && PORT=5173 HOST=localhost node build/index.js`
 
 # create-svelte
 
