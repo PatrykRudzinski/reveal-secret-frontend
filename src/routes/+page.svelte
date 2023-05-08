@@ -5,13 +5,14 @@
 	import type { CreatedSecret } from '../types/CreatedSecret.type';
 	import SecretInputRow from '../components/SecretInputRow.svelte';
 	import ContentWrapper from '../components/ContentWrapper.svelte';
+	import type { Secret } from '../types/Secret.type';
 
 	let name = '';
 	let accessCode = '';
 	let lastId = 0;
 	let error: null | string = null;
 
-	let secrets = [{ id: lastId, key: '', value: '' }];
+	let secrets: (Secret & { id: number })[] = [{ id: lastId, key: '', value: '' }];
 
 	const addSecretSet = () => {
 		lastId++;
@@ -28,8 +29,7 @@
 
 			const body = { name, accessCode, secrets: secrets.map(({ key, value }) => ({ key, value })) };
 
-			// TODO envs
-			const response = await fetch('http://localhost:3000/api/secret/create', {
+			const response = await fetch(`${import.meta.env.VITE_API_URL}/secret/create`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -38,11 +38,10 @@
 			});
 			const { uuid } = await response.json();
 
-			// TODO envs
 			const state: CreatedSecret = {
 				accessCode,
 				name,
-				url: `http://localhost:5173/reveal/${uuid}`
+				url: `${import.meta.env.VITE_APP_URL}/reveal/${uuid}`
 			};
 			setTimeout(() => goto('/created-successfully', { state }), 0);
 		} catch (e) {

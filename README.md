@@ -1,3 +1,9 @@
+> ### To run locally: `npm i && npm run dev`
+
+> ### To deploy:
+>
+> 1. Create new `.env` file basing on `.env.example`
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).

@@ -7,21 +7,20 @@
 		ToastNotification
 	} from 'carbon-components-svelte';
 	import ContentWrapper from '../../../components/ContentWrapper.svelte';
+	import type { Secret } from '../../../types/Secret.type';
 
-	// TODO types
 	/** @type {import('./$types').PageData} */
 	export let data: { uuid: string };
 
 	let isLoading = false;
-	let dataToDisplay: any = null;
+	let dataToDisplay: { name: string; secrets: Secret[] } | null = null;
 	let accessCode = '';
 	let error: null | { title: string; caption: string } = null;
 
-	// TODO types
 	const revealSecret = async () => {
 		isLoading = true;
 		error = null;
-		const response = await fetch(`http://localhost:3000/api/secret/reveal/${data.uuid}`, {
+		const response = await fetch(`${import.meta.env.VITE_API_URL}/secret/reveal/${data.uuid}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -113,8 +112,6 @@
 		</form>
 	{/if}
 </section>
-
-<!-- TODO not found fallback -->
 
 <style>
 	.info {
