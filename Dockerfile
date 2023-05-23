@@ -20,7 +20,7 @@ COPY ./src/ ./src/
 
 CMD if [ "${NODE_ENV}" = "production" ]; \
     then \
-      npm run build && npm run preview -- --host; \
+      npm run build && npm run start -- --host; \
     else \
       npm run dev -- --host; \
     fi
